@@ -1,0 +1,34 @@
+﻿@model CategoryEditVM
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="card">
+    <div class="card-body">
+        <form class="forms-sample" method="post" asp-action="Edit" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="inputBlogTitle">Category Name</label>
+                <input asp-for="Name" class="form-control" id="inputBlogTitle" placeholder="Title.." maxlength="100">
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="inputBlogDescription">Category Description</label>
+                <textarea asp-for="Description" class="form-control" id="inputBlogDescription" placeholder="Description.." rows="8"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="image mb-5">
+                <img src="~/assets/images/@Model.Image" style="width:100px;height:100px" alt="" />
+            </div>
+            <div class="form-group">
+                <label for="inputCategoryName">Upload new image</label>
+                <input asp-for="NewImage" accept="image/*" class="form-control" id="inputCategoryName">
+                <span asp-validation-for="NewImage" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-gradient-primary me-2">Submit</button>
+            <a class="btn btn-light" asp-action="Index">Cancel</a>
+        </form>
+    </div>
+</div>
+
+

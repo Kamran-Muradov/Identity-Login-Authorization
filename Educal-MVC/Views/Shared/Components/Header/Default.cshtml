@@ -1,0 +1,242 @@
+﻿@model HeaderVM
+<header class="sticky-top">
+    <div class="header-area">
+        <div class="row align-items-center">
+            <div class="col-3">
+                <div class="header-left d-flex justify-content-evenly align-items-center">
+                    <img src="~/assets/images/logo.png" alt="" />
+                    <div class="categories category-white">
+                        <div class="category-text d-flex align-items-center">
+                            <div class="grid-box d-flex">
+                                <i class="fa-solid fa-ellipsis-vertical"></i>
+                                <i class="fa-solid fa-ellipsis-vertical"></i>
+                                <i class="fa-solid fa-ellipsis-vertical"></i>
+                            </div>
+                            <span>Category</span>
+                        </div>
+                        <ul class="category-submenu">
+                            <li>
+                                <a href="">English Learning</a>
+                            </li>
+                            <li>
+                                <a href="">Web Development</a>
+                            </li>
+                            <li>
+                                <a href="">Logo Design</a>
+                            </li>
+                            <li>
+                                <a href="">Motion Graphics</a>
+                            </li>
+                            <li>
+                                <a href="">Video Edition</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-9">
+                <div class="header-right">
+                    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                        <button class="navbar-toggler"
+                                type="button"
+                                data-toggle="collapse"
+                                data-target="#navbarNav"
+                                aria-controls="navbarNav"
+                                aria-expanded="false"
+                                aria-label="Toggle navigation">
+                            <i class="fa-solid fa-bars"></i>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav">
+                                <li data-id="1" class="nav-item">
+                                    <a class="nav-link" href="./home.html">
+                                        <span>Home</span>
+                                        <i class="fa-solid fa-chevron-down"></i>
+                                    </a>
+                                    <ul class="submenu" data-id="1">
+                                        <li><a href="">Home Style 1</a></li>
+                                        <li><a href="">Home Style 2</a></li>
+                                        <li><a href="">Home Style 3</a></li>
+                                    </ul>
+                                </li>
+                                <li data-id="2" class="nav-item">
+                                    <a class="nav-link" href="./courses.html">
+                                        <span>Courses</span>
+                                        <i class="fa-solid fa-chevron-down"></i>
+                                    </a>
+                                    <ul class="submenu" data-id="2">
+                                        <li><a href="">Courses</a></li>
+                                        <li><a href="">Course List</a></li>
+                                        <li><a href="">Course Sidebar</a></li>
+                                        <li><a href="">Course Details</a></li>
+                                    </ul>
+                                </li>
+                                <li data-id="3" class="nav-item">
+                                    <a class="nav-link" href="./blog.html">
+                                        <span>Blog</span>
+                                        <i class="fa-solid fa-chevron-down"></i>
+                                    </a>
+                                    <ul class="submenu" data-id="3">
+                                        <li><a href="">Blog</a></li>
+                                        <li><a href="">Blog Details</a></li>
+                                    </ul>
+                                </li>
+                                <li data-id="4" class="nav-item">
+                                    <a class="nav-link" href="">
+                                        <span>Pages</span>
+                                        <i class="fa-solid fa-chevron-down"></i>
+                                    </a>
+                                    <ul class="submenu" data-id="4">
+                                        <li><a href="">About</a></li>
+                                        <li><a href="">Instructor</a></li>
+                                        <li><a href="">Instructor Details</a></li>
+                                        <li><a href="">Event Details</a></li>
+                                        <li><a href="">My Cart</a></li>
+                                        <li><a href="">My Wishlist</a></li>
+                                        <li><a href="">Checkout</a></li>
+                                        <li><a href="">Sign In</a></li>
+                                        <li><a href="">Sign Up</a></li>
+                                        <li><a href="">Error</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="./contact.html">Contact</a>
+                                </li>
+                                <li data-id="5" class="nav-item">
+                                    <a class="nav-link" href="">
+                                        <span>Account</span>
+                                        <i class="fa-solid fa-chevron-down"></i>
+                                    </a>
+                                    <ul class="submenu" data-id="5">
+                                        @if (User.Identity.IsAuthenticated)
+                                        {
+                                            <li><a href="">@Model.UserFullName</a></li>
+                                            @if (User.IsInRole("SuperAdmin") || User.IsInRole("Admin"))
+                                            {
+                                                <li><a asp-area="Admin" asp-controller="Dashboard" asp-action="Index" >Go to Admin</a></li>
+                                            }
+                                            <li>
+                                                <form method="post" asp-controller="Account" asp-action="Logout">
+                                                    <button class="btn" type="submit">Logout</button>
+                                                </form>
+                                            </li>
+                                        }
+                                        else
+                                        {
+                                            <li><a asp-controller="Account" asp-action="SignUp">Sign up</a></li>
+                                            <li><a asp-controller="Account" asp-action="SignIn">Sign in</a></li>
+                                        }
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="search-area">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="search" placeholder="Search..." />
+                            <img src="~/assets/images/shopping-cart.png" alt="" />
+                            <sup>2</sup>
+                        </div>
+                        <a href="">Try for free</a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="sidebar-mobile">
+        <div class="sidebar-area">
+            <div class="close">
+                <button><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="logo">
+                <img src="~/assets/images/logo.png" alt="" />
+            </div>
+            <div class="sidebar-content">
+                <ul>
+                    <li class="menu" data-id="1">
+                        Home
+                        <i class="fa-solid fa-chevron-down"></i>
+                        <ul class="mob-submenu d-none" data-id="1">
+                            <li>
+                                <a href="./home.html">Home Style 1</a>
+                            </li>
+                            <li>
+                                <a href="">Home Style 2</a>
+                            </li>
+                            <li>
+                                <a href="">Home Style 3</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu" data-id="2">
+                        Courses
+                        <i class="fa-solid fa-chevron-down"></i>
+                        <ul class="mob-submenu d-none" data-id="2">
+                            <li>
+                                <a href="./courses.html">Courses</a>
+                            </li>
+                            <li>
+                                <a href="">Course List</a>
+                            </li>
+                            <li>
+                                <a href="">Course Sidebar</a>
+                            </li>
+                            <li>
+                                <a href="">Course Details</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu" data-id="3">
+                        Blog
+                        <i class="fa-solid fa-chevron-down"></i>
+                        <ul class="mob-submenu d-none" data-id="3">
+                            <li>
+                                <a href="./blog.html">Blog</a>
+                            </li>
+                            <li>
+                                <a href="">Blog List</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        Pages
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </li>
+                    <li>
+                        <a class="menu" href="./contact.html">Contact</a>
+                    </li>
+                </ul>
+                <div class="search-box">
+                    <input type="text" placeholder="Search..." />
+                    <a href="">
+                        <svg _ngcontent-mkt-c73=""
+                             version="1.1"
+                             xmlns="http://www.w3.org/2000/svg"
+                             xmlns:xlink="http://www.w3.org/1999/xlink"
+                             x="0px"
+                             y="0px"
+                             viewBox="0 0 584.4 584.4"
+                             xml:space="preserve"
+                             style="enable-background: new 0 0 584.4 584.4">
+                        <g _ngcontent-mkt-c73="">
+                        <g _ngcontent-mkt-c73="">
+                        <path _ngcontent-mkt-c73=""
+                              d="M565.7,474.9l-61.1-61.1c-3.8-3.8-8.8-5.9-13.9-5.9c-6.3,0-12.1,3-15.9,8.3c-16.3,22.4-36,42.1-58.4,58.4    c-4.8,3.5-7.8,8.8-8.3,14.5c-0.4,5.6,1.7,11.3,5.8,15.4l61.1,61.1c12.1,12.1,28.2,18.8,45.4,18.8c17.1,0,33.3-6.7,45.4-18.8    C590.7,540.6,590.7,499.9,565.7,474.9z"
+                              class="st0"></path>
+                        <path _ngcontent-mkt-c73=""
+                              d="M254.6,509.1c140.4,0,254.5-114.2,254.5-254.5C509.1,114.2,394.9,0,254.6,0C114.2,0,0,114.2,0,254.5    C0,394.9,114.2,509.1,254.6,509.1z M254.6,76.4c98.2,0,178.1,79.9,178.1,178.1s-79.9,178.1-178.1,178.1S76.4,352.8,76.4,254.5    S156.3,76.4,254.6,76.4z"
+                              class="st1"></path>
+                    </g>
+                  </g>
+                </svg>
+                    </a>
+                </div>
+                <div class="cart-box">
+                    <a href="">
+                        <img src="~/assets/images/cart.svg" alt="" />
+                        <span>3</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

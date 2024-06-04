@@ -1,0 +1,388 @@
+﻿@model HomeVM
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<section id="banner">
+    <img src="~/assets/images/hero-1-circle.png" alt="" />
+    <img src="~/assets/images/hero-1-circle-2.png" alt="" />
+    <img src="~/assets/images/hero-1-circle-4.png" alt="" />
+    <img src="~/assets/images/hero-sm-1.jpg" alt="" />
+    <img src="~/assets/images/hero-1-dot-2.png" alt="" />
+    <div class="custom-container">
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <div class="banner-left">
+                    <!-- <span>Access 2700+</span> -->
+                    <h3>
+                        <span>Access 2700+</span><span class="yellow-shape">
+                            Online
+                            <img src="~/assets/images/yellow-bg.png" alt="yellow-shape" />
+                        </span>
+                        Tutorial From Top Instructor.
+                    </h3>
+                    <p>
+                        Meet university,and cultural institutions, who'll share their
+                        experience.
+                    </p>
+                    <a href="" class="mt-3">View all course</a>
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="banner-right">
+                    <img src="~/assets/images/hero-1.jpg" alt="" />
+                    <div class="slogan">
+                        <span>Tomorrow is our</span>
+                        <p>“When I Grow Up” Spirit Day!</p>
+                    </div>
+                    <img src="~/assets/images/hero-1-dot.png" alt="" />
+                    <img src="~/assets/images/hero-1-circle-3.png" alt="" />
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="popular-courses" class="mt-5">
+    <div class="custom-container">
+        <div class="section-head d-flex justify-content-between align-items-center">
+            <h2>
+                Explore <br />Our
+                <span>
+                    Popular
+                    <img src="~/assets/images/yellow-bg.png" alt="" />
+                </span>Courses
+            </h2>
+            <div class="more-categories">
+                <a href="">
+                    View all Category
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            @foreach (var item in Model.Categories.Take(9))
+            {
+                <div class="col-12 col-md-4 mt-3 mt-md-4">
+                    <div class="course course-1 d-flex align-items-center">
+                        <img src="~/assets/images/@item.Image" style="width:40px;height:40px" />
+                        <div class="course-name">
+                            <a href="">@item.Name</a>
+                            <span class="d-block">@item.Description</span>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="row mt-5">
+            <div class="col-12 col-md-6 mt-3 mt-md-0">
+                <div class="online-course online-course-1 d-flex">
+                    <div class="course-name">
+                        <span>Free</span>
+                        <a href="" class="mt-2">Germany Foundation Document</a>
+                        <a href="" class="mt-3">View Courses</a>
+                    </div>
+                    <img src="~/assets/images/banner-img-1.png" alt="" />
+                </div>
+            </div>
+            <div class="col-12 col-md-6 mt-3 mt-md-0">
+                <div class="online-course online-course-2 d-flex">
+                    <div class="course-name">
+                        <span>Free</span>
+                        <a href="" class="mt-2">Online Courses From Eduka University</a>
+                        <a href="" class="mt-3">View Courses</a>
+                    </div>
+                    <img src="~/assets/images/banner-img-2.png" alt="" />
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="all-courses">
+    <div class="custom-container">
+        <div class="col-12 col-md-5">
+            <div class="course-slogan">
+                <h2>
+                    Find the Right<br />Online
+                    <span>
+                        Course<img src="~/assets/images/yellow-bg.png" alt="" />
+                    </span>
+                    For You
+                </h2>
+                <p>
+                    You don't have to struggle alone, you've got our assistance and
+                    help.
+                </p>
+            </div>
+        </div>
+        <div class="tab-headers">
+            <ul>
+                <li data-id="0" class="active-tab">See All</li>
+                @foreach (var item in Model.Categories.Take(4))
+                {
+                    <li data-id="@item.Id">@item.Name</li>
+
+                }
+            </ul>
+        </div>
+        <div class="tab-body mt-4">
+            <div class="row">
+                @foreach (var item in @Model.Courses)
+                {
+                    <div class="content col-12 col-md-4 mt-3 mt-md-4" data-id="@item.CategoryId">
+                        <div class="cart cart-1">
+                            <div class="thumbnail" style="height:228.5px">
+                                <img src="~/assets/images/@item.MainImage" alt="" />
+                            </div>
+                            <div class="course-tag">
+                                <a href="">@item.CategoryName</a>
+                            </div>
+                            <div class="course-content">
+                                <div class="short-info d-flex justify-content-between">
+                                    <div class="lesson-count">
+                                        <i class="fi fi-rs-book"></i>
+                                        <span>43 Lesson</span>
+                                    </div>
+                                    <div class="lesson-rating">
+                                        <i class="fa-solid fa-star"
+                                           style="color: #ff8000"></i>
+                                        <span>4.5 (44)</span>
+                                    </div>
+                                </div>
+                                <a href="">
+                                    @item.Name
+                                </a>
+                                <div class="teacher-name mt-3 d-flex align-items-center">
+                                    <img src="~/assets/images/teacher-1.jpg" alt="" />
+                                    <a href="">Jim Séchen</a>
+                                </div>
+                            </div>
+                            <div class="course-more d-flex align-items-center justify-content-between">
+                                <div class="price d-flex align-items-center">
+                                    @if (item.DiscountPrice != null)
+                                    {
+                                        <span class="new-price">$@item.DiscountPrice</span>
+                                        <span class="old-price">$@item.Price</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="new-price">$@item.Price</span>
+                                    }
+                                </div>
+                                <a href="">
+                                    Know Details
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+<section id="events" class="mb-5 mt-5">
+    <div class="event-title">
+        <h2>
+            Current
+            <span>
+                Events<img src="~/assets/images/yellow-bg.png" alt="" />
+            </span>
+        </h2>
+        <p>We found 13 events available for you.</p>
+    </div>
+    <div class="custom-container">
+        <div class="events-area mt-5">
+            <div class="row">
+                <div class="col-12 col-md-10 offset-md-1">
+                    <div class="event event-1 d-flex justify-content-between align-items-center">
+                        <div class="event-meta">
+                            <p>Jun 14, 2022 | 12:00 am - 2:30 pm | New York</p>
+                            <a href="">Digital transformation conference</a>
+                        </div>
+                        <a href="">
+                            View more
+                            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-12 col-md-10 offset-md-1">
+                    <div class="event event-2 mt-2 d-flex justify-content-between align-items-center">
+                        <div class="event-meta">
+                            <p>April 10, 2022 | 9:00 am - 5:00 pm | Mindahan</p>
+                            <a href="">World education day conference</a>
+                        </div>
+                        <a href="">
+                            View more
+                            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-12 col-md-10 offset-md-1">
+                    <div class="event event-3 mt-2 d-flex justify-content-between align-items-center">
+                        <div class="event-meta">
+                            <p>July 16, 2022 | 0:30 am - 1:30 pm | Weedpatch</p>
+                            <a href="">Foundations of global health</a>
+                        </div>
+                        <a href="">
+                            View more
+                            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-12 col-md-10 offset-md-1">
+                    <div class="event event-4 mt-2 d-flex justify-content-between align-items-center">
+                        <div class="event-meta">
+                            <p>March 24, 2022 | 10:30 am - 12:00 pm | Lnland</p>
+                            <a href="">Business creativity workshops</a>
+                        </div>
+                        <a href="">
+                            View more
+                            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="prices" class="mt-5 mb-5">
+    <div class="prices-title">
+        <img src="~/assets/images/yellow-bg.png" alt="" />
+        <h2>
+            Simple <br />
+            All Inclusive Pricing
+        </h2>
+        <p>No contracts. No surprise fees.</p>
+    </div>
+    <div class="custom-container">
+        <div class="tab-headers d-flex justify-content-center">
+            <span class="active-price-tab" data-id="1">Monthly Plan</span>
+            <span data-id="2">Annual Plan</span>
+        </div>
+        <div class="tab-body">
+            <div class="content mt-5" data-id="1">
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <div class="price price-1">
+                            <h3>Gold</h3>
+                            <p>Perfect for small marketing teams</p>
+                            <h4>
+                                $59
+                                <sub>.99 / annually</sub>
+                            </h4>
+                            <ul class="mt-4">
+                                <li>
+                                    <i class="fa-solid fa-check"></i>
+                                    Course Discussions
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-check"></i>
+                                    Content Library
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-check"></i>
+                                    1-hour Mentorship
+                                </li>
+                            </ul>
+                            <a href="" class="mt-4">Get atarted</a>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 mt-3 mt-md-0">
+                        <div class="price price-2">
+                            <div class="best-offer">
+                                <span>Best Value</span>
+                            </div>
+                            <h3>Diamond</h3>
+                            <p>Perfect for small marketing teams</p>
+                            <h4>
+                                $99
+                                <sub>.99 / annually</sub>
+                            </h4>
+                            <ul class="mt-4">
+                                <li>
+                                    <i class="fa-solid fa-check"></i>
+                                    Course Discussions
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-check"></i>
+                                    Content Library
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-check"></i>
+                                    1-hour Mentorship
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-check"></i>
+                                    Online Course
+                                </li>
+                            </ul>
+                            <a href="" class="mt-4">Get started</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content mt-5 d-none" data-id="2">
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <div class="price price-1">
+                            <h3>Gold</h3>
+                            <p>Perfect for small marketing teams</p>
+                            <h4>
+                                $59
+                                <sub>.99 / annually</sub>
+                            </h4>
+                            <ul class="mt-4">
+                                <li>
+                                    <i class="fa-solid fa-check"></i>
+                                    Course Discussions
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-check"></i>
+                                    Content Library
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-check"></i>
+                                    1-hour Mentorship
+                                </li>
+                            </ul>
+                            <a href="" class="mt-4">Get atarted</a>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 mt-3 mt-md-0">
+                        <div class="price price-2">
+                            <div class="best-offer">
+                                <span>Best Value</span>
+                            </div>
+                            <h3>Diamond</h3>
+                            <p>Perfect for small marketing teams</p>
+                            <h4>
+                                $99
+                                <sub>.99 / annually</sub>
+                            </h4>
+                            <ul class="mt-4">
+                                <li>
+                                    <i class="fa-solid fa-check"></i>
+                                    Course Discussions
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-check"></i>
+                                    Content Library
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-check"></i>
+                                    1-hour Mentorship
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-check"></i>
+                                    Online Course
+                                </li>
+                            </ul>
+                            <a href="" class="mt-4">Get started</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

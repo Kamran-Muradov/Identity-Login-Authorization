@@ -1,0 +1,41 @@
+﻿@model CategoryDetailVM
+
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<div class="card m-auto w-75">
+    <div class="card-body">
+        <h4 class="card-title">Category Detailed View</h4>
+        <div class="d-flex">
+            <div class="d-flex align-items-center text-muted font-weight-light">
+                <i class="mdi mdi-clock icon-sm me-2"></i>
+                <span>@Model.CreatedDate</span>
+            </div>
+        </div>
+        <div class="mt-5 ">
+            <div class="image mb-5">
+                <img src="~/assets/images/@Model.Image" style="width:100px;height:100px" alt="" />
+            </div>
+            <div class="mb-0 flex-grow d-flex">
+                <h5 class="me-2 mb-2">Name:</h5>
+                <p class="mb-0 font-weight-light">@Model.Name</p>
+            </div>
+            <div class="mb-0 mt-3 flex-grow ">
+                <h5 class="me-2 mb-2">Courses</h5>
+                <ul class="list-group list-group-flush w-50">
+                    @foreach (var item in Model.Courses)
+                    {
+                        <li class="list-group-item">@item</li>
+                    }
+                </ul>
+            </div>
+            <div class="mb-0 mt-3 flex-grow d-flex">
+                <h5 class="me-2 mb-2">Course Count:</h5>
+                <p class="mb-0 font-weight-light">@Model.CourseCount</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+

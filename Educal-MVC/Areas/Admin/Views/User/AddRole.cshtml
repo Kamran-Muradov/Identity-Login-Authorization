@@ -1,0 +1,25 @@
+﻿@model AddUserRoleVM
+
+@{
+    ViewData["Title"] = "AddRole";
+}
+
+<div class="card">
+    <div class="card-body">
+        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+        <form class="forms-sample" method="post" asp-action="AddRole" enctype="multipart/form-data">
+            <div class="form-group">
+                <label class="col-sm-3 col-form-label">User</label>
+                <select asp-for="UserId" asp-items="@ViewBag.users" class="form-control"></select>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 col-form-label">Role</label>
+                <select asp-for="RoleId" asp-items="@ViewBag.roles" class="form-control"></select>
+            </div>
+            <button type="submit" class="btn btn-gradient-primary me-2">Submit</button>
+            <a class="btn btn-light" asp-action="Index">Cancel</a>
+        </form>
+    </div>
+</div>
+
+
